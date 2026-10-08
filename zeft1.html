@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول جنى المتألق والمتحفز 🌟</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-glow': 'pulseGlow 2s infinite ease-in-out',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+                            '50%': { opacity: 0.85, transform: 'scale(1.03)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti for Celebration Effects -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        /* Light Pattern */
+        .bg-pattern-light {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+
+        /* Dark Pattern */
+        .dark .bg-pattern-dark {
+            background-color: #0f172a;
+            background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .gradient-title {
+            background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-gold {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .dark ::webkit-scrollbar-thumb {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-pattern-light dark:bg-pattern-dark min-h-screen text-slate-800 dark:text-slate-100 transition-colors duration-300 pb-16">
+
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-pink-100 dark:border-slate-800 shadow-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+            
+            <!-- Logo & Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-pink-500 via-purple-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-pink-200 dark:shadow-none animate-float">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-black gradient-title">جدول التفوق والبهجة | جنى 🌸</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">مساعد المذاكرة، تنظيم الوقت، وبناء الحماسة Daily Boost</p>
+                </div>
+            </div>
+
+            <!-- Streak & Energy Badge -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 px-3.5 py-1.5 rounded-2xl shadow-inner">
+                    <i data-lucide="flame" class="w-5 h-5 text-amber-500 animate-bounce"></i>
+                    <div>
+                        <span class="text-[10px] text-amber-600 dark:text-amber-400 font-bold block leading-none">عداد الحماسة</span>
+                        <span id="streakCounter" class="text-lg font-black text-amber-600 dark:text-amber-400 leading-none">0 نقاط</span>
+                    </div>
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-amber-300 transition-all border border-slate-200 dark:border-slate-700" title="تبديل المظهر">
+                    <i id="themeIcon" data-lucide="moon" class="w-5 h-5"></i>
+                </button>
+
+                <!-- Print Button -->
+                <button onclick="window.print()" class="hidden sm:flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 px-3.5 py-2 rounded-2xl text-xs font-bold transition border border-slate-200 dark:border-slate-700">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    طباعة
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 mt-6 space-y-6">
+
+        <div id="motivationBanner" class="bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute -left-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+            <div class="absolute -right-10 -top-10 w-48 h-48 bg-yellow-400/20 rounded-full blur-2xl"></div>
+
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="space-y-2 text-center md:text-right">
+                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-bold text-yellow-300 border border-white/20">
+                        <i data-lucide="quote" class="w-3.5 h-3.5"></i>
+                        <span>جرعة تحفيزية لجنى اليوم ✨</span>
+                    </div>
+                    <blockquote id="quoteText" class="text-lg md:text-xl font-extrabold text-white leading-relaxed italic">
+                        "إذا كان بإمكانك أن تحلم به، فيمكنك تحقيقه! IF you can dream it ... You can do it"
+                    </blockquote>
+                    <p id="quoteAuthor" class="text-xs text-pink-200 font-medium">تذكري دائماً أن طموحكِ يستحق الجهد 🎉</p>
+                </div>
+                
+                <button onclick="generateRandomQuote()" class="shrink-0 bg-white text-purple-700 hover:bg-yellow-300 hover:text-slate-900 font-black px-5 py-3 rounded-2xl text-xs transition-all shadow-lg flex items-center gap-2 transform active:scale-95">
+                    <i data-lucide="shuffle" class="w-4 h-4"></i>
+                    عبارة جديدة 🎲
+                </button>
+            </div>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 shadow-md border border-purple-100 dark:border-slate-800 relative overflow-hidden">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="p-2 rounded-xl bg-pink-100 dark:bg-pink-900/40 text-pink-600 dark:text-pink-300 font-bold text-xs flex items-center gap-1.5">
+                            <i data-lucide="calendar-heart" class="w-4 h-4"></i>
+                            جدول اليوم المباشر
+                        </span>
+                        <!-- Day Switcher Selector -->
+                        <select id="daySelector" onchange="renderTodayCard(this.value)" class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 font-bold text-xs rounded-xl px-3 py-1.5 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-pink-500">
+                            <option value="Saturday">السبت</option>
+                            <option value="Sunday">الأحد</option>
+                            <option value="Monday">الاثنين</option>
+                            <option value="Tuesday">الثلاثاء</option>
+                            <option value="Wednesday">الأربعاء</option>
+                            <option value="Thursday">الخميس</option>
+                            <option value="Friday">الجمعة</option>
+                        </select>
+                    </div>
+
+                    <h2 id="todayTitle" class="text-2xl font-black text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                        النهارده <span id="todayDayName" class="gradient-title">--</span> وعليكي كذا وكذا 👇
+                    </h2>
+                    <p id="todaySubtitle" class="text-xs text-slate-500 dark:text-slate-400 font-medium">عرض جميع مواعيدك المحددة لليوم الحالي بشكل دقيق لتسهيل التنظيم.</p>
+                </div>
+
+                <!-- Complete All Today Tasks Badge -->
+                <button onclick="markAllTodayTasksComplete()" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg shadow-emerald-500/20 text-xs flex items-center justify-center gap-2.5 transition transform hover:-translate-y-0.5 active:translate-y-0">
+                    <i data-lucide="party-popper" class="w-5 h-5"></i>
+                    <span>إنجاز جميع مهام اليوم والحصول على حماسة 🌟</span>
+                </button>
+            </div>
+
+            <!-- Dynamic Tasks Container for Selected Day -->
+            <div id="todayScheduleBadges" class="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- LEFT SIDE: POMODORO TIMER (5 Cols) -->
+            <div class="lg:col-span-5 glass-card rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+                <div>
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <div class="p-2.5 rounded-2xl bg-rose-100 dark:bg-rose-900/40 text-rose-500 dark:text-rose-300">
+                                <i data-lucide="timer" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-base text-slate-800 dark:text-slate-100">مؤقت بومودورو ⏱️</h3>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">ركزي 25 دقيقة واسترخي 5 دقائق</p>
+                            </div>
+                        </div>
+                        <span id="pomoModeBadge" class="text-[10px] font-black px-3 py-1 rounded-full bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300">
+                            وقت التركيز 🎯
+                        </span>
+                    </div>
+
+                    <!-- Mode Selectors -->
+                    <div class="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-2xl text-xs font-bold mb-6">
+                        <button onclick="setPomoMode('work')" id="btnPomoWork" class="py-2 rounded-xl transition bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 shadow-sm">
+                            تركيز (25د)
+                        </button>
+                        <button onclick="setPomoMode('shortBreak')" id="btnPomoShort" class="py-2 rounded-xl transition text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+                            استراحة قصيرة (5د)
+                        </button>
+                        <button onclick="setPomoMode('longBreak')" id="btnPomoLong" class="py-2 rounded-xl transition text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+                            استراحة طويلة (15د)
+                        </button>
+                    </div>
+
+                    <!-- Timer Display -->
+                    <div class="text-center my-4 py-4 bg-gradient-to-b from-slate-50 to-pink-50/50 dark:from-slate-800/50 dark:to-purple-950/20 rounded-3xl border border-pink-100/50 dark:border-slate-700">
+                        <div id="pomoTimerDisplay" class="text-6xl font-black font-mono tracking-tight text-slate-800 dark:text-slate-100">
+                            25:00
+                        </div>
+                        <p id="pomoStatusText" class="text-xs text-slate-500 dark:text-slate-400 mt-2 font-medium">جاهزة للبدء؟ اضغطي تشغيل 🚀</p>
+                    </div>
+                </div>
+
+                <!-- Timer Controls -->
+                <div class="flex items-center gap-3 mt-4">
+                    <button id="pomoStartBtn" onclick="togglePomoTimer()" class="flex-1 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-2xl shadow-lg shadow-pink-500/20 text-xs flex items-center justify-center gap-2 transition active:scale-95">
+                        <i id="pomoPlayIcon" data-lucide="play" class="w-4 h-4"></i>
+                        <span id="pomoStartBtnText">ابدئي التركيز</span>
+                    </button>
+                    <button onclick="resetPomoTimer()" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 p-3 rounded-2xl text-xs font-bold transition border border-slate-200 dark:border-slate-700" title="إعادة ضبط">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE: TO-DO LIST FOR TODAY (7 Cols) -->
+            <div class="lg:col-span-7 glass-card rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+                <div>
+                    <!-- Header & Progress -->
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <div class="p-2.5 rounded-2xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300">
+                                <i data-lucide="check-square" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-base text-slate-800 dark:text-slate-100">قائمة مهام اليوم (To-Do List) 📝</h3>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">سجلي مهامك وحققي أهداف اليوم خطوة بخطوة</p>
+                            </div>
+                        </div>
+                        <span id="todoProgressText" class="text-xs font-black text-purple-600 dark:text-purple-400">0 / 0 (0%)</span>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden mb-5 border border-slate-200/50 dark:border-slate-700">
+                        <div id="todoProgressBar" class="bg-gradient-to-r from-pink-500 to-purple-600 h-full w-0 transition-all duration-500"></div>
+                    </div>
+
+                    <!-- Input Form -->
+                    <form onsubmit="addNewTask(event)" class="flex gap-2 mb-4">
+                        <input type="text" id="newTaskInput" placeholder="أضيفي مهمة جديدة لليوم (مثلاً: حل واجب الكيمياء)..." class="flex-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-2.5 text-xs text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-purple-500 transition">
+                        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-4 py-2.5 rounded-2xl text-xs flex items-center gap-1.5 shadow-md shadow-purple-500/20 transition active:scale-95 shrink-0">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            إضافة
+                        </button>
+                    </form>
+
+                    <!-- Tasks List Container -->
+                    <div id="tasksList" class="space-y-2 max-h-[220px] overflow-y-auto pr-1">
+                        <!-- Dynamically populated via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs text-slate-500 dark:text-slate-400">
+                    <span id="tasksRemainingCount">0 مهام متبقية</span>
+                    <button onclick="clearCompletedTasks()" class="text-rose-500 hover:text-rose-600 dark:text-rose-400 font-bold hover:underline">
+                        مسح المهام المكتملة
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+            <div class="relative z-10 flex flex-wrap justify-between items-center gap-4">
+                <div class="space-y-1">
+                    <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-xs font-bold backdrop-blur-md">
+                        <i data-lucide="brain" class="w-4 h-4 text-yellow-300"></i>
+                        <span>تحدي القدرات اللفظية اليومي</span>
+                    </div>
+                    <h2 class="text-2xl font-black">هدف اليوم: 45-60 دقيقة قدرات 🎯</h2>
+                    <p class="text-xs text-purple-100">ساعة واحدة يومياً تضمن لك التميز والوصول للدرجة العالية بإذن الله!</p>
+                </div>
+                <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20">
+                    <button id="verbalBtn" onclick="toggleVerbalStatus()" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-yellow-400 text-slate-900 hover:bg-yellow-300 transition shadow-md flex items-center gap-2 transform active:scale-95">
+                        <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                        <span id="verbalBtnText">أتممت قدرات اليوم ✨</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-2">
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 w-full sm:w-auto">
+                <button onclick="switchTab('weekly')" id="tab-weekly" class="tab-btn px-5 py-2.5 rounded-2xl font-bold text-sm bg-purple-600 text-white shadow-md flex items-center gap-2 transition">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    الجدول الأسبوعي الشامل
+                </button>
+                <button onclick="switchTab('teachers')" id="tab-teachers" class="tab-btn px-5 py-2.5 rounded-2xl font-bold text-sm bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2 transition border border-slate-200 dark:border-slate-700">
+                    <i data-lucide="users" class="w-4 h-4 text-purple-500"></i>
+                    دليل المعلمين والمواعيد
+                </button>
+                <button onclick="switchTab('daily')" id="tab-daily" class="tab-btn px-5 py-2.5 rounded-2xl font-bold text-sm bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2 transition border border-slate-200 dark:border-slate-700">
+                    <i data-lucide="clock" class="w-4 h-4 text-pink-500"></i>
+                    نظام اليوم الدراسي
+                </button>
+            </div>
+
+            <!-- Category Legend -->
+            <div class="flex flex-wrap items-center gap-2 text-xs font-bold text-slate-600 dark:text-slate-400">
+                <span class="flex items-center gap-1.5 bg-sky-100 dark:bg-sky-900/40 text-sky-800 dark:text-sky-300 px-2.5 py-1 rounded-lg border border-sky-200 dark:border-sky-800"><span class="w-2 h-2 rounded-full bg-sky-500"></span>المدرسة</span>
+                <span class="flex items-center gap-1.5 bg-fuchsia-100 dark:bg-fuchsia-900/40 text-fuchsia-800 dark:text-fuchsia-300 px-2.5 py-1 rounded-lg border border-fuchsia-200 dark:border-fuchsia-800"><span class="w-2 h-2 rounded-full bg-fuchsia-500"></span>القدرات</span>
+                <span class="flex items-center gap-1.5 bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-300 px-2.5 py-1 rounded-lg border border-purple-200 dark:border-purple-800"><span class="w-2 h-2 rounded-full bg-purple-500"></span>الدروس</span>
+                <span class="flex items-center gap-1.5 bg-teal-100 dark:bg-teal-900/40 text-teal-800 dark:text-teal-300 px-2.5 py-1 rounded-lg border border-teal-200 dark:border-teal-800"><span class="w-2 h-2 rounded-full bg-teal-500"></span>السباحة</span>
+                <span class="flex items-center gap-1.5 bg-rose-100 dark:bg-rose-900/40 text-rose-800 dark:text-rose-300 px-2.5 py-1 rounded-lg border border-rose-200 dark:border-rose-800"><span class="w-2 h-2 rounded-full bg-rose-500"></span>القرآن</span>
+            </div>
+        </div>
+
+        <div id="view-weekly" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
+
+                <!-- Saturday -->
+                <div class="glass-card rounded-2xl p-4 border-t-4 border-emerald-500 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-black text-lg text-emerald-900 dark:text-emerald-400">السبت</h3>
+                        <span class="text-[11px] font-bold bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-full">إجازة مدرسة</span>
+                    </div>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="p-2.5 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800/60">
+                            <div class="font-bold text-fuchsia-900 dark:text-fuchsia-300">📘 قدرات لفظي</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">10:00 ص - 11:30 ص</div>
+                            <div class="text-[10px] text-fuchsia-700 dark:text-fuchsia-400 mt-1">تجميعات وحل نماذج</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60">
+                            <div class="font-bold text-emerald-900 dark:text-emerald-300">🧬 أحياء</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">4:00 مساءً</div>
+                            <div class="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium">Mr. Mostafa Harb</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60">
+                            <div class="font-bold text-amber-900 dark:text-amber-300">🧪 كيمياء</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">7:00 مساءً</div>
+                            <div class="text-[10px] text-amber-700 dark:text-amber-400 font-medium">Mr. Mostafa Fawzy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sunday -->
+                <div class="glass-card rounded-2xl p-4 border-t-4 border-purple-500 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-black text-lg text-purple-900 dark:text-purple-400">الأحد</h3>
+                        <span class="text-[11px] font-bold bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded-full">مدرسة</span>
+                    </div>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="p-2 rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/60 text-sky-900 dark:text-sky-300 font-medium">
+                            🏫 مدرسة (6:00 ص - 1:30 م)
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800/60">
+                            <div class="font-bold text-fuchsia-900 dark:text-fuchsia-300">📘 قدرات لفظي</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">3:30 م - 4:30 م</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800/60">
+                            <div class="font-bold text-teal-900 dark:text-teal-300">🏊‍♀️ سباحة</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">5:00 مساءً</div>
+                            <div class="text-[10px] text-teal-700 dark:text-teal-400 font-medium">Coach Nour</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60">
+                            <div class="font-bold text-blue-900 dark:text-blue-300">🇬🇧 إنجليزي</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">7:00 مساءً</div>
+                            <div class="text-[10px] text-blue-700 dark:text-blue-400 font-medium">Mr. Yasser Ragab</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/60">
+                            <div class="font-bold text-purple-900 dark:text-purple-300">📐 رياضيات</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">9:00 مساءً</div>
+                            <div class="text-[10px] text-purple-700 dark:text-purple-400 font-medium">Ms. Monira Fouad</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monday -->
+                <div class="glass-card rounded-2xl p-4 border-t-4 border-amber-500 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-black text-lg text-amber-900 dark:text-amber-400">الاثنين</h3>
+                        <span class="text-[11px] font-bold bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded-full">مدرسة</span>
+                    </div>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="p-2 rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/60 text-sky-900 dark:text-sky-300 font-medium">
+                            🏫 مدرسة (6:00 ص - 1:30 م)
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800/60">
+                            <div class="font-bold text-fuchsia-900 dark:text-fuchsia-300">📘 قدرات لفظي</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">3:30 م - 4:30 م</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60">
+                            <div class="font-bold text-amber-900 dark:text-amber-300">🧪 كيمياء</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">6:00 مساءً</div>
+                            <div class="text-[10px] text-amber-700 dark:text-amber-400 font-medium">Mr. Mostafa Fawzy</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                            <div class="font-bold text-slate-700 dark:text-slate-300">✍️ حل واجبات ومذاكرة</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">7:30 م - 9:00 م</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tuesday -->
+                <div class="glass-card rounded-2xl p-4 border-t-4 border-rose-500 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-black text-lg text-rose-900 dark:text-rose-400">الثلاثاء</h3>
+                        <span class="text-[11px] font-bold bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded-full">مدرسة</span>
+                    </div>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="p-2 rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/60 text-sky-900 dark:text-sky-300 font-medium">
+                            🏫 مدرسة (6:00 ص - 1:30 م)
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60">
+                            <div class="font-bold text-rose-900 dark:text-rose-300">📖 قرآن</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">1:30 ظهراً</div>
+                            <div class="text-[10px] text-rose-700 dark:text-rose-400 font-medium">Ms. Arwa</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800/60">
+                            <div class="font-bold text-fuchsia-900 dark:text-fuchsia-300">📘 قدرات لفظي</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">3:30 م - 4:30 م</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800/60">
+                            <div class="font-bold text-teal-900 dark:text-teal-300">🏊‍♀️ سباحة</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">5:00 مساءً</div>
+                            <div class="text-[10px] text-teal-700 dark:text-teal-400 font-medium">Coach Nour</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wednesday -->
+                <div class="glass-card rounded-2xl p-4 border-t-4 border-blue-500 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-black text-lg text-blue-900 dark:text-blue-400">الأربعاء</h3>
+                        <span class="text-[11px] font-bold bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded-full">مدرسة</span>
+                    </div>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="p-2 rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/60 text-sky-900 dark:text-sky-300 font-medium">
+                            🏫 مدرسة (6:00 ص - 1:30 م)
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800/60">
+                            <div class="font-bold text-fuchsia-900 dark:text-fuchsia-300">📘 قدرات لفظي</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">3:30 م - 4:30 م</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60">
+                            <div class="font-bold text-emerald-900 dark:text-emerald-300">📚 تحضير أحياء للخميس</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">5:00 م - 6:30 م</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60">
+                            <div class="font-bold text-blue-900 dark:text-blue-300">🇬🇧 إنجليزي</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">7:00 مساءً</div>
+                            <div class="text-[10px] text-blue-700 dark:text-blue-400 font-medium">Mr. Yasser Ragab</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thursday -->
+                <div class="glass-card rounded-2xl p-4 border-t-4 border-indigo-500 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-black text-lg text-indigo-900 dark:text-indigo-400">الخميس</h3>
+                        <span class="text-[11px] font-bold bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded-full">مدرسة</span>
+                    </div>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="p-2 rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/60 text-sky-900 dark:text-sky-300 font-medium">
+                            🏫 مدرسة (6:00 ص - 1:30 م)
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800/60">
+                            <div class="font-bold text-fuchsia-900 dark:text-fuchsia-300">📘 قدرات لفظي</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">3:30 م - 4:30 م</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800/60">
+                            <div class="font-bold text-teal-900 dark:text-teal-300">🏊‍♀️ سباحة</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">5:00 مساءً</div>
+                            <div class="text-[10px] text-teal-700 dark:text-teal-400 font-medium">Coach Nour</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/60">
+                            <div class="font-bold text-purple-900 dark:text-purple-300">📐 رياضيات</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">6:00 مساءً</div>
+                            <div class="text-[10px] text-purple-700 dark:text-purple-400 font-medium">Ms. Monira Fouad</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60">
+                            <div class="font-bold text-emerald-900 dark:text-emerald-300">🧬 أحياء</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">8:00 مساءً</div>
+                            <div class="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium">Mr. Mostafa Harb</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Friday -->
+                <div class="glass-card rounded-2xl p-4 border-t-4 border-pink-500 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-black text-lg text-pink-900 dark:text-pink-400">الجمعة</h3>
+                        <span class="text-[11px] font-bold bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-2 py-0.5 rounded-full">راحة واستجمام</span>
+                    </div>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-300">
+                            ☀️ صباحاً: نوم متأخر + راحة وفطور
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60">
+                            <div class="font-bold text-rose-900 dark:text-rose-300">📖 قرآن</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">3:00 مساءً</div>
+                            <div class="text-[10px] text-rose-700 dark:text-rose-400 font-medium">Ms. Arwa</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800/60">
+                            <div class="font-bold text-fuchsia-900 dark:text-fuchsia-300">📘 قدرات (مراجعة الأسبوع)</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">4:30 م - 5:30 م</div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/60">
+                            <div class="font-bold text-indigo-900 dark:text-indigo-300">✨ تجهيز أدوات للأسبوع الجديد</div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-0.5">مساءً</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="view-teachers" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <!-- Math Card -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-purple-100 dark:border-slate-700 shadow-sm hover:shadow-md transition relative overflow-hidden">
+                <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 flex items-center justify-center mb-4">
+                    <i data-lucide="calculator" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-black text-slate-800 dark:text-slate-100">الرياضيات</h3>
+                <p class="text-sm font-bold text-purple-600 dark:text-purple-400 mb-4">Ms. Monira Fouad</p>
+                <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-purple-500"></i>
+                        <span>الأحد: الساعة 9:00 مساءً</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-purple-500"></i>
+                        <span>الخميس: الساعة 6:00 مساءً</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- English Card -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-blue-100 dark:border-slate-700 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 flex items-center justify-center mb-4">
+                    <i data-lucide="languages" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-black text-slate-800 dark:text-slate-100">اللغة الإنجليزية</h3>
+                <p class="text-sm font-bold text-blue-600 dark:text-blue-400 mb-4">Mr. Yasser Ragab</p>
+                <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-blue-500"></i>
+                        <span>الأحد: الساعة 7:00 مساءً</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-blue-500"></i>
+                        <span>الأربعاء: الساعة 7:00 مساءً</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biology Card -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-emerald-100 dark:border-slate-700 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 flex items-center justify-center mb-4">
+                    <i data-lucide="dna" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-black text-slate-800 dark:text-slate-100">الأحياء</h3>
+                <p class="text-sm font-bold text-emerald-600 dark:text-emerald-400 mb-4">Mr. Mostafa Harb</p>
+                <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-emerald-500"></i>
+                        <span>السبت: الساعة 4:00 مساءً</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-emerald-500"></i>
+                        <span>الخميس: الساعة 8:00 مساءً</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chemistry Card -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-amber-100 dark:border-slate-700 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-300 flex items-center justify-center mb-4">
+                    <i data-lucide="flask-conical" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-black text-slate-800 dark:text-slate-100">الكيمياء</h3>
+                <p class="text-sm font-bold text-amber-600 dark:text-amber-400 mb-4">Mr. Mostafa Fawzy</p>
+                <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-amber-500"></i>
+                        <span>السبت: الساعة 7:00 مساءً</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-amber-500"></i>
+                        <span>الاثنين: الساعة 6:00 مساءً</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Swimming Card -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-teal-100 dark:border-slate-700 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-2xl bg-teal-100 dark:bg-teal-900/40 text-teal-600 dark:text-teal-300 flex items-center justify-center mb-4">
+                    <i data-lucide="waves" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-black text-slate-800 dark:text-slate-100">السباحة</h3>
+                <p class="text-sm font-bold text-teal-600 dark:text-teal-400 mb-4">Coach Nour</p>
+                <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-teal-500"></i>
+                        <span>الأحد: الساعة 5:00 مساءً</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-teal-500"></i>
+                        <span>الثلاثاء: الساعة 5:00 مساءً</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-teal-500"></i>
+                        <span>الخميس: الساعة 5:00 مساءً</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quran Card -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-rose-100 dark:border-slate-700 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300 flex items-center justify-center mb-4">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-black text-slate-800 dark:text-slate-100">القرآن الكريم</h3>
+                <p class="text-sm font-bold text-rose-600 dark:text-rose-400 mb-4">Ms. Arwa</p>
+                <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-rose-500"></i>
+                        <span>الثلاثاء: الساعة 1:30 ظهراً</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-2.5 rounded-xl">
+                        <i data-lucide="clock" class="w-4 h-4 text-rose-500"></i>
+                        <span>الجمعة: الساعة 3:00 مساءً</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="view-daily" class="hidden bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+            <div class="flex items-center justify-between border-b dark:border-slate-700 pb-4">
+                <div>
+                    <h3 class="text-xl font-black text-slate-800 dark:text-slate-100">الروتين اليومي الموصى به ⏰</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">توزيع الساعات من الصباح حتى المساء للحفاظ على طاقتك</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-sky-50 dark:bg-sky-950/40 border border-sky-100 dark:border-sky-800/40">
+                    <span class="px-3 py-1 bg-sky-500 text-white font-bold rounded-xl text-xs shrink-0">6:00 ص - 1:30 م</span>
+                    <div>
+                        <h4 class="font-bold text-sky-950 dark:text-sky-300">🏫 الدوام المدرسي</h4>
+                        <p class="text-xs text-sky-700 dark:text-sky-400 mt-0.5">التركيز والاستيعاب أثناء الحصص للتسهيل في البيت.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-800/40">
+                    <span class="px-3 py-1 bg-emerald-600 text-white font-bold rounded-xl text-xs shrink-0">1:30 م - 3:00 م</span>
+                    <div>
+                        <h4 class="font-bold text-emerald-950 dark:text-emerald-300">🥗 غداء + راحة + قيلولة</h4>
+                        <p class="text-xs text-emerald-700 dark:text-emerald-400 mt-0.5">وقت مقدس لاستعادة الطاقات وشحن الذهن للفترة المسائية.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-100 dark:border-fuchsia-800/40">
+                    <span class="px-3 py-1 bg-fuchsia-600 text-white font-bold rounded-xl text-xs shrink-0">3:30 م - 4:30 م</span>
+                    <div>
+                        <h4 class="font-bold text-fuchsia-950 dark:text-fuchsia-300">📘 ساعة القدرات اللفظية (Daily)</h4>
+                        <p class="text-xs text-fuchsia-700 dark:text-fuchsia-400 mt-0.5">أحسن وقت والذهن صافي لحل واستيعاب النماذج والتناظر.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-100 dark:border-purple-800/40">
+                    <span class="px-3 py-1 bg-purple-600 text-white font-bold rounded-xl text-xs shrink-0">5:00 م - 9:00 م</span>
+                    <div>
+                        <h4 class="font-bold text-purple-950 dark:text-purple-300">🎾 فترة الدروس / التمارين / المذاكرة</h4>
+                        <p class="text-xs text-purple-700 dark:text-purple-400 mt-0.5">الالتزام بجدول اليوم الخاص (سباحة - دروس - مراجعة).</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800/40">
+                    <span class="px-3 py-1 bg-indigo-600 text-white font-bold rounded-xl text-xs shrink-0">10:30 مساءً</span>
+                    <div>
+                        <h4 class="font-bold text-indigo-950 dark:text-indigo-300">🌙 النوم المبكر</h4>
+                        <p class="text-xs text-indigo-700 dark:text-indigo-400 mt-0.5">الحصول على 7-8 ساعات نوم للنشاط والصحة البدنية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Schedule Master Data for Days
+        const scheduleData = {
+            Saturday: {
+                arName: "السبت",
+                badge: "إجازة مدرسة",
+                items: [
+                    { time: "10:00 ص - 11:30 ص", title: "📘 قدرات لفظي", desc: "تجميعات وحل نماذج", color: "fuchsia" },
+                    { time: "4:00 مساءً", title: "🧬 أحياء", desc: "Mr. Mostafa Harb", color: "emerald" },
+                    { time: "7:00 مساءً", title: "🧪 كيمياء", desc: "Mr. Mostafa Fawzy", color: "amber" }
+                ],
+                defaultTasks: ["حل واجب الأحياء", "مراجعة الكيمياء 30 دقيقة", "تدريب قدرات لفظي 45 دقيقة"]
+            },
+            Sunday: {
+                arName: "الأحد",
+                badge: "مدرسة",
+                items: [
+                    { time: "6:00 ص - 1:30 م", title: "🏫 مدرسة", desc: "الدوام المدرسي", color: "sky" },
+                    { time: "3:30 م - 4:30 م", title: "📘 قدرات لفظي", desc: "تدريب يومي", color: "fuchsia" },
+                    { time: "5:00 مساءً", title: "🏊‍♀️ سباحة", desc: "Coach Nour", color: "teal" },
+                    { time: "7:00 مساءً", title: "🇬🇧 إنجليزي", desc: "Mr. Yasser Ragab", color: "blue" },
+                    { time: "9:00 مساءً", title: "📐 رياضيات", desc: "Ms. Monira Fouad", color: "purple" }
+                ],
+                defaultTasks: ["تحضير دروس المدرسة", "تجهيز شنطة السباحة", "مراجعة تمارين الإنجليزي والرياضيات"]
+            },
+            Monday: {
+                arName: "الاثنين",
+                badge: "مدرسة",
+                items: [
+                    { time: "6:00 ص - 1:30 م", title: "🏫 مدرسة", desc: "الدوام المدرسي", color: "sky" },
+                    { time: "3:30 م - 4:30 م", title: "📘 قدرات لفظي", desc: "تدريب يومي", color: "fuchsia" },
+                    { time: "6:00 مساءً", title: "🧪 كيمياء", desc: "Mr. Mostafa Fawzy", color: "amber" },
+                    { time: "7:30 م - 9:00 م", title: "✍️ حل واجبات ومذاكرة", desc: "مراجعة الكيمياء وتطبيقات", color: "slate" }
+                ],
+                defaultTasks: ["مذاكرة الدرس الجديد للكيمياء", "حل واجبات اليوم", "قراءة نموذج قدرات"]
+            },
+            Tuesday: {
+                arName: "الثلاثاء",
+                badge: "مدرسة",
+                items: [
+                    { time: "6:00 ص - 1:30 م", title: "🏫 مدرسة", desc: "الدوام المدرسي", color: "sky" },
+                    { time: "1:30 ظهراً", title: "📖 قرآن", desc: "Ms. Arwa", color: "rose" },
+                    { time: "3:30 م - 4:30 م", title: "📘 قدرات لفظي", desc: "تدريب يومي", color: "fuchsia" },
+                    { time: "5:00 مساءً", title: "🏊‍♀️ سباحة", desc: "Coach Nour", color: "teal" }
+                ],
+                defaultTasks: ["تسميع ورد القرآن", "تمارين السباحة", "حل 20 سؤال قدرات"]
+            },
+            Wednesday: {
+                arName: "الأربعاء",
+                badge: "مدرسة",
+                items: [
+                    { time: "6:00 ص - 1:30 م", title: "🏫 مدرسة", desc: "الدوام المدرسي", color: "sky" },
+                    { time: "3:30 م - 4:30 م", title: "📘 قدرات لفظي", desc: "تدريب يومي", color: "fuchsia" },
+                    { time: "5:00 م - 6:30 م", title: "📚 تحضير أحياء للخميس", desc: "قراءة الباب الجديد", color: "emerald" },
+                    { time: "7:00 مساءً", title: "🇬🇧 إنجليزي", desc: "Mr. Yasser Ragab", color: "blue" }
+                ],
+                defaultTasks: ["تحضير شبابيك الأحياء", "حفظ الكلمات الجديدة للإنجليزي", "مراجعة سريعة للقدرات"]
+            },
+            Thursday: {
+                arName: "الخميس",
+                badge: "مدرسة",
+                items: [
+                    { time: "6:00 ص - 1:30 م", title: "🏫 مدرسة", desc: "الدوام المدرسي", color: "sky" },
+                    { time: "3:30 م - 4:30 م", title: "📘 قدرات لفظي", desc: "تدريب يومي", color: "fuchsia" },
+                    { time: "5:00 مساءً", title: "🏊‍♀️ سباحة", desc: "Coach Nour", color: "teal" },
+                    { time: "6:00 مساءً", title: "📐 رياضيات", desc: "Ms. Monira Fouad", color: "purple" },
+                    { time: "8:00 مساءً", title: "🧬 أحياء", desc: "Mr. Mostafa Harb", color: "emerald" }
+                ],
+                defaultTasks: ["التركيز في حصة الأحياء والرياضيات", "قضاء وقت ممتع بعد الدروس"]
+            },
+            Friday: {
+                arName: "الجمعة",
+                badge: "راحة واستجمام",
+                items: [
+                    { time: "صباحاً", title: "☀️ نوم متأخر + راحة وفطور", desc: "استرخاء وصحة", color: "amber" },
+                    { time: "3:00 مساءً", title: "📖 قرآن", desc: "Ms. Arwa", color: "rose" },
+                    { time: "4:30 م - 5:30 م", title: "📘 قدرات (مراجعة الأسبوع)", desc: "اختبار مراجعة شمولية", color: "fuchsia" },
+                    { time: "مساءً", title: "✨ تجهيز أدوات للأسبوع الجديد", desc: "ترتيب الكتب والجدول", color: "indigo" }
+                ],
+                defaultTasks: ["قراءة سورة الكهف", "جلسة القرآن مع مس أروى", "ترتيب المكتب للأسبوع الجديد"]
+            }
+        };
+
+        // Motivational Quotes Quotes Bank
+        const quotesList = [
+            { ar: "إذا كان بإمكانك أن تحلم به، فيمكنك تحقيقه!", en: "IF you can dream it ... You can do it" },
+            { ar: "النجاح هو مجموع المحاولات الصغيرة المتكررة يومياً.", en: "Success is the sum of small efforts, repeated day in and day out." },
+            { ar: "جنى البطلة! المستقبل المشرق يبدأ بجهد اليوم 🌟", en: "Your bright future is built step by step today!" },
+            { ar: "لا تتوقفي حتى تكوني فخورة بنفسك وبدرجاتك المرتفعة!", en: "Don't stop until you are proud of your score!" },
+            { ar: "الذكاء مع الاستمرارية يصنع المعجزات في القدرات والدروس.", en: "Consistency + Effort = Incredible Results!" },
+            { ar: "تذكري دائماً: لكل مجتهد نصيب وفرحة النجاح لا تُقدّر بثمن!", en: "Hard work always pays off with big smiles!" }
+        ];
+
+        // Global State Vars
+        let streak = parseInt(localStorage.getItem('jana_streak') || '0');
+        let tasks = JSON.parse(localStorage.getItem('jana_tasks') || '[]');
+        let isVerbalDone = false;
+        let pomoInterval = null;
+        let pomoTimeLeft = 25 * 60;
+        let pomoIsRunning = false;
+        let pomoCurrentMode = 'work'; // work, shortBreak, longBreak
+
+        window.onload = function() {
+            lucide.createIcons();
+
+            // Load saved theme
+            if (localStorage.getItem('jana_theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.getElementById('themeIcon').setAttribute('data-lucide', 'sun');
+                lucide.createIcons();
+            }
+
+            // Update Streak UI
+            updateStreakUI();
+
+            // Detect current day
+            const daysMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const todayIndex = new Date().getDay();
+            const currentDayKey = daysMap[todayIndex];
+
+            // Set select option and render dynamic today card
+            const daySelector = document.getElementById('daySelector');
+            if (daySelector) {
+                daySelector.value = currentDayKey;
+                renderTodayCard(currentDayKey);
+            }
+
+            // Initialize Tasks
+            if (tasks.length === 0) {
+                // Populate default tasks for today if empty
+                tasks = (scheduleData[currentDayKey]?.defaultTasks || []).map((t, idx) => ({
+                    id: Date.now() + idx,
+                    text: t,
+                    completed: false
+                }));
+                saveTasks();
+            }
+            renderTasks();
+
+            // Random motivational quote start
+            generateRandomQuote();
+        };
+
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('jana_theme', isDark ? 'dark' : 'light');
+            
+            const icon = document.getElementById('themeIcon');
+            if (isDark) {
+                icon.setAttribute('data-lucide', 'sun');
+            } else {
+                icon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        }
+
+        function generateRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotesList.length);
+            const quote = quotesList[randomIndex];
+            
+            const textEl = document.getElementById('quoteText');
+            const authorEl = document.getElementById('quoteAuthor');
+
+            if (textEl) textEl.innerText = `"${quote.ar} - ${quote.en}"`;
+            if (authorEl) authorEl.innerText = `تذكري دائماً يا جنى: أنكِ قادرة على التفوق والإبداع 💖`;
+        }
+
+        function renderTodayCard(dayKey) {
+            const dayInfo = scheduleData[dayKey];
+            if (!dayInfo) return;
+
+            document.getElementById('todayDayName').innerText = dayInfo.arName;
+            
+            const container = document.getElementById('todayScheduleBadges');
+            container.innerHTML = '';
+
+            const colorClasses = {
+                sky: 'bg-sky-50 dark:bg-sky-950/40 border-sky-200 text-sky-900 dark:text-sky-300',
+                fuchsia: 'bg-fuchsia-50 dark:bg-fuchsia-950/40 border-fuchsia-200 text-fuchsia-900 dark:text-fuchsia-300',
+                emerald: 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 text-emerald-900 dark:text-emerald-300',
+                amber: 'bg-amber-50 dark:bg-amber-950/40 border-amber-200 text-amber-900 dark:text-amber-300',
+                teal: 'bg-teal-50 dark:bg-teal-950/40 border-teal-200 text-teal-900 dark:text-teal-300',
+                blue: 'bg-blue-50 dark:bg-blue-950/40 border-blue-200 text-blue-900 dark:text-blue-300',
+                purple: 'bg-purple-50 dark:bg-purple-950/40 border-purple-200 text-purple-900 dark:text-purple-300',
+                rose: 'bg-rose-50 dark:bg-rose-950/40 border-rose-200 text-rose-900 dark:text-rose-300',
+                indigo: 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-200 text-indigo-900 dark:text-indigo-300',
+                slate: 'bg-slate-50 dark:bg-slate-800 border-slate-200 text-slate-900 dark:text-slate-300'
+            };
+
+            dayInfo.items.forEach(item => {
+                const badge = document.createElement('div');
+                const colorClass = colorClasses[item.color] || colorClasses.slate;
+                badge.className = `p-3 rounded-2xl border text-xs font-bold transition transform hover:scale-105 shadow-sm ${colorClass}`;
+                badge.innerHTML = `
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] opacity-80">${item.time}</span>
+                        <i data-lucide="sparkle" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <div class="text-sm font-black">${item.title}</div>
+                    <div class="text-[10px] opacity-75 mt-0.5">${item.desc}</div>
+                `;
+                container.appendChild(badge);
+            });
+
+            lucide.createIcons();
+        }
+
+        function renderTasks() {
+            const listEl = document.getElementById('tasksList');
+            listEl.innerHTML = '';
+
+            if (tasks.length === 0) {
+                listEl.innerHTML = `
+                    <div class="text-center py-6 text-slate-400 dark:text-slate-500 text-xs font-medium">
+                        لا توجد مهام حالياً! أضيفي مهمة جديدة للبدء 🎯
+                    </div>
+                `;
+            } else {
+                tasks.forEach(task => {
+                    const item = document.createElement('div');
+                    item.className = `flex items-center justify-between p-3 rounded-2xl border transition-all ${
+                        task.completed 
+                            ? 'bg-emerald-50/60 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800/40 line-through text-slate-400 dark:text-slate-500' 
+                            : 'bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100'
+                    }`;
+                    item.innerHTML = `
+                        <div class="flex items-center gap-2.5 flex-1 cursor-pointer" onclick="toggleTask(${task.id})">
+                            <div class="w-5 h-5 rounded-lg border flex items-center justify-center transition-colors ${
+                                task.completed 
+                                    ? 'bg-emerald-500 border-emerald-500 text-white' 
+                                    : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700'
+                            }">
+                                ${task.completed ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : ''}
+                            </div>
+                            <span class="text-xs font-bold leading-snug">${escapeHtml(task.text)}</span>
+                        </div>
+                        <button onclick="deleteTask(${task.id})" class="text-slate-400 hover:text-rose-500 p-1 transition" title="حذف">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    `;
+                    listEl.appendChild(item);
+                });
+            }
+
+            updateTasksProgress();
+            lucide.createIcons();
+        }
+
+        function addNewTask(e) {
+            e.preventDefault();
+            const input = document.getElementById('newTaskInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            tasks.push({
+                id: Date.now(),
+                text: text,
+                completed: false
+            });
+
+            input.value = '';
+            saveTasks();
+            renderTasks();
+        }
+
+        function toggleTask(id) {
+            tasks = tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t);
+            saveTasks();
+            renderTasks();
+
+            // Check if all completed
+            if (tasks.length > 0 && tasks.every(t => t.completed)) {
+                triggerCelebration("رائعة جداً يا جنى! أكملتِ جميع مهام القائمة 🎉");
+                incrementStreak();
+            }
+        }
+
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            saveTasks();
+            renderTasks();
+        }
+
+        function clearCompletedTasks() {
+            tasks = tasks.filter(t => !t.completed);
+            saveTasks();
+            renderTasks();
+        }
+
+        function updateTasksProgress() {
+            const completedCount = tasks.filter(t => t.completed).length;
+            const totalCount = tasks.length;
+            const percent = totalCount === 0 ? 0 : Math.round((completedCount / totalCount) * 100);
+
+            document.getElementById('todoProgressText').innerText = `${completedCount} / ${totalCount} (${percent}%)`;
+            document.getElementById('todoProgressBar').style.width = `${percent}%`;
+            document.getElementById('tasksRemainingCount').innerText = `${totalCount - completedCount} مهام متبقية`;
+        }
+
+        function saveTasks() {
+            localStorage.setItem('jana_tasks', JSON.stringify(tasks));
+        }
+
+        function markAllTodayTasksComplete() {
+            if (tasks.length === 0) {
+                tasks = [
+                    { id: Date.now(), text: "إنهاء مذاكرة اليوم بكفاءة", completed: true },
+                    { id: Date.now() + 1, text: "إنجاز تدريب القدرات", completed: true }
+                ];
+            } else {
+                tasks = tasks.map(t => ({ ...t, completed: true }));
+            }
+            saveTasks();
+            renderTasks();
+            triggerCelebration("يا سلام عليكِ يا بطلة! أنجزتِ كل مهام اليوم وزدنا حماستك 🎉✨");
+            incrementStreak();
+        }
+
+        function updateStreakUI() {
+            document.getElementById('streakCounter').innerText = `${streak} نقطة 🔥`;
+        }
+
+        function incrementStreak() {
+            streak += 1;
+            localStorage.setItem('jana_streak', streak.toString());
+            updateStreakUI();
+        }
+
+        function triggerCelebration(message) {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        function setPomoMode(mode) {
+            pomoCurrentMode = mode;
+            clearInterval(pomoInterval);
+            pomoIsRunning = false;
+            updatePomoPlayButtonUI();
+
+            const btnWork = document.getElementById('btnPomoWork');
+            const btnShort = document.getElementById('btnPomoShort');
+            const btnLong = document.getElementById('btnPomoLong');
+            const badge = document.getElementById('pomoModeBadge');
+
+            const activeClass = "py-2 rounded-xl transition bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 shadow-sm";
+            const inactiveClass = "py-2 rounded-xl transition text-slate-500 hover:text-slate-800 dark:hover:text-slate-200";
+
+            btnWork.className = mode === 'work' ? activeClass : inactiveClass;
+            btnShort.className = mode === 'shortBreak' ? activeClass : inactiveClass;
+            btnLong.className = mode === 'longBreak' ? activeClass : inactiveClass;
+
+            if (mode === 'work') {
+                pomoTimeLeft = 25 * 60;
+                badge.className = "text-[10px] font-black px-3 py-1 rounded-full bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300";
+                badge.innerText = "وقت التركيز 🎯";
+                document.getElementById('pomoStatusText').innerText = "جاهزة للتركيز لمدة 25 دقيقة؟ 🚀";
+            } else if (mode === 'shortBreak') {
+                pomoTimeLeft = 5 * 60;
+                badge.className = "text-[10px] font-black px-3 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-900/50 dark:text-teal-300";
+                badge.innerText = "استراحة قصيرة ☕";
+                document.getElementById('pomoStatusText').innerText = "خذي استراحة 5 دقائق واشربي ماء 💧";
+            } else if (mode === 'longBreak') {
+                pomoTimeLeft = 15 * 60;
+                badge.className = "text-[10px] font-black px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300";
+                badge.innerText = "استراحة طويلة 🛋️";
+                document.getElementById('pomoStatusText').innerText = "استريحي 15 دقيقة وجددي طاقتك ✨";
+            }
+
+            updatePomoDisplay();
+        }
+
+        function togglePomoTimer() {
+            if (pomoIsRunning) {
+                clearInterval(pomoInterval);
+                pomoIsRunning = false;
+                document.getElementById('pomoStatusText').innerText = "المؤقت متوقف مؤقتاً ⏸️";
+            } else {
+                pomoIsRunning = true;
+                document.getElementById('pomoStatusText').innerText = "المؤقت يعمل الآن.. ركزي بإبداع! 💪";
+                pomoInterval = setInterval(() => {
+                    pomoTimeLeft--;
+                    updatePomoDisplay();
+
+                    if (pomoTimeLeft <= 0) {
+                        clearInterval(pomoInterval);
+                        pomoIsRunning = false;
+                        updatePomoPlayButtonUI();
+                        triggerCelebration("انتهى وقت المؤقت! عمل رائع يا جنى 👏");
+                        incrementStreak();
+                        if (pomoCurrentMode === 'work') {
+                            setPomoMode('shortBreak');
+                        } else {
+                            setPomoMode('work');
+                        }
+                    }
+                }, 1000);
+            }
+            updatePomoPlayButtonUI();
+        }
+
+        function resetPomoTimer() {
+            setPomoMode(pomoCurrentMode);
+        }
+
+        function updatePomoDisplay() {
+            const minutes = Math.floor(pomoTimeLeft / 60);
+            const seconds = pomoTimeLeft % 60;
+            const formatted = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('pomoTimerDisplay').innerText = formatted;
+        }
+
+        function updatePomoPlayButtonUI() {
+            const icon = document.getElementById('pomoPlayIcon');
+            const text = document.getElementById('pomoStartBtnText');
+
+            if (pomoIsRunning) {
+                icon.setAttribute('data-lucide', 'pause');
+                text.innerText = "إيقاف مؤقت";
+            } else {
+                icon.setAttribute('data-lucide', 'play');
+                text.innerText = pomoTimeLeft < (pomoCurrentMode === 'work' ? 25*60 : 5*60) ? "استئناف" : "ابدئي الآن";
+            }
+            lucide.createIcons();
+        }
+
+        function switchTab(tabName) {
+            const tabs = ['weekly', 'teachers', 'daily'];
+            
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                const view = document.getElementById(`view-${t}`);
+                
+                if (t === tabName) {
+                    btn.className = "tab-btn px-5 py-2.5 rounded-2xl font-bold text-sm bg-purple-600 text-white shadow-md flex items-center gap-2 transition";
+                    view.classList.remove('hidden');
+                } else {
+                    btn.className = "tab-btn px-5 py-2.5 rounded-2xl font-bold text-sm bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2 transition border border-slate-200 dark:border-slate-700";
+                    view.classList.add('hidden');
+                }
+            });
+        }
+
+        function toggleVerbalStatus() {
+            isVerbalDone = !isVerbalDone;
+            const btn = document.getElementById('verbalBtn');
+            const text = document.getElementById('verbalBtnText');
+            
+            if (isVerbalDone) {
+                btn.className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-emerald-400 text-slate-900 hover:bg-emerald-300 transition shadow-md flex items-center gap-2 transform active:scale-95";
+                text.innerText = "ممتازة! أنجزتِ قدرات اليوم 🎉";
+                triggerCelebration("بطلة! إنجاز القدرات يقرّبك للـ 100% 🎯");
+                incrementStreak();
+            } else {
+                btn.className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-yellow-400 text-slate-900 hover:bg-yellow-300 transition shadow-md flex items-center gap-2 transform active:scale-95";
+                text.innerText = "أتممت قدرات اليوم ✨";
+            }
+        }
+
+        // Helper string escaper
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
